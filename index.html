@@ -4,38 +4,38 @@
 
 <ngx-charts-number-card ng-reflect-results="[object Object],[object Object" ng-reflect-view="700,400" ng-reflect-scheme="[object Object]">
   <ngx-charts-chart ng-reflect-view="700,400" ng-reflect-show-legend="false" ng-reflect-animations="true">
-    <div class="ngx-charts-outer" style="width: 800px; height: 400px;" >	
-		<svg class="ngx-charts" style="width: 800px; height: 400px;" >
+    <div class="ngx-charts-outer" style="width: 800px; height: 520px;" >	
+		<svg class="ngx-charts" style="width: 800px; height: 520px;" >
 			<g class="number-card chart clickable" transform="translate(10 , 10)">
 				<g ngx-charts-card-series="" ng-reflect-data="[object Object],[object Object" ng-reflect-dims="[object Object]" ng-reflect-colors="[object Object]" ng-reflect-inner-padding="15" ng-reflect-empty-color="rgba(0, 0, 0, 0)" ng-reflect-animations="true">
 					<g ngx-charts-card="" ng-reflect-color="#5AA454" ng-reflect-band-color="#5AA454" ng-reflect-text-color="rgb(0, 102, 255)" ng-reflect-x="1" ng-reflect-y="0" ng-reflect-width="211" ng-reflect-height="365" ng-reflect-data="[object Object]" ng-reflect-median-size="9" ng-reflect-animations="true">
-						<g class="cell" transform="translate(1 , 0)">
-							<rect class="card" rx="3" ry="3" width="211" height="365" style="fill: rgb(0, 102, 255);"></rect>
+						<g class="cell" transform="translate(0 , 1)">
+							<rect class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(154,194,244);"></rect>
 							<title>Date</title>
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="211" height="60">
-							<center><p style="color: rgb(18, 33, 17); font-size: 15px; line-height: 15px;">Date</p></center>
+							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Date</p></center>
 							</foreignObject>
 							<text text id = "date" alignment-baseline="hanging" class="value-text" text-anchor="start" x="26.375" y="100" style="fill: rgb(255, 255, 255); font-size: 15t;">
 							Unknown</text>
 						</g>
 					</g>
 					<g ngx-charts-card="" ng-reflect-color="#A10A28" ng-reflect-band-color="#A10A28" ng-reflect-text-color="rgb(0, 204, 102)" ng-reflect-x="227" ng-reflect-y="0" ng-reflect-width="211" ng-reflect-height="365" ng-reflect-data="[object Object]" ng-reflect-median-size="9" ng-reflect-animations="true">
-						<g class="cell" transform="translate(227 , 0)">
-							<rect class="card" rx="3" ry="3" width="211" height="365" style="fill: rgb(0, 204, 102);"></rect>
+						<g class="cell" transform="translate(0 , 170)">
+							<rect class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(194,244,154);"></rect>
 							<title>Temperature</title>
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="211" height="60">
-							<center><p style="color: rgb(236, 206, 212); font-size: 15px; line-height: 15px;">Temperature</p></center>
+							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Temperature</p></center>
 							</foreignObject>
 							<text id = "temp" alignment-baseline="hanging" class="value-text" text-anchor="start" x="26.375" y="100" style="fill: rgb(255, 255, 255); font-size: 15t;">
 							Unknown </text>
 						</g>
 					</g>
 					<g ngx-charts-card="" ng-reflect-color="#C7B42C" ng-reflect-band-color="#C7B42C" ng-reflect-text-color="rgb(255, 77, 77)" ng-reflect-x="453" ng-reflect-y="0" ng-reflect-width="211" ng-reflect-height="365" ng-reflect-data="[object Object]" ng-reflect-median-size="9" ng-reflect-animations="true">
-						<g class="cell" transform="translate(453 , 0)">
-							<rect id = "binsBlock" class="card" rx="3" ry="3" width="211" height="365" style="fill: rgb(255, 77, 77);"></rect>
+						<g class="cell" transform="translate(0 ,340)">
+							<rect id = "binsBlock" class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(244,154,194);"></rect>
 							<title>Bin Collection</title>
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="211" height="60">
-							<center><p style="color: rgb(40, 36, 9); font-size: 15px; line-height: 15px;">Bin Collection</p></center>
+							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Bin Collection</p></center>
 							</foreignObject>
 							<text id = "bins" alignment-baseline="hanging" class="value-text" text-anchor="start" x="26.375" y="100" style="fill: rgb(255, 255, 255); font-size: 15pt;">
 							Unknown
@@ -50,8 +50,6 @@
 </ngx-charts-number-card>
   
 <button onclick="GetWeather()">Update Weather</button>
-<button onclick="GetBins()">Update Bins</button>
-<button onclick="GetTime()">Update Time</button>
 
 <script>
 
@@ -80,8 +78,10 @@ document.getElementById("bins").innerHTML = n;
 
 if (n % 2) {
 	document.getElementById("binsBlock").style.fill = "black";
+	document.getElementById("bins").innerHTML = "Black Bin";
 }else {
 	document.getElementById("binsBlock").style.fill = "blue";
+	document.getElementById("bins").innerHTML = "Recycling";
 }
 	
 }
@@ -91,7 +91,6 @@ function GetTime() {
 var d = new Date();
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 document.getElementById("date").innerHTML = months[d.getMonth()] + " " + d.getDate() + "		" + d.getHours() + ":" + d.getMinutes();
-
 
 }
 
@@ -107,6 +106,8 @@ function GetWeek() {
   // Adjust to Thursday in week 1 and count number of weeks from date to week1.
   return 1 + Math.round(((d.getTime() - week1.getTime()) / 86400000 - day0 + (week1.getDay() + 6) % 7) / 7);
 }
+
+setInterval(function() { GetBins();} , 10 );
 
 
 </script>	
