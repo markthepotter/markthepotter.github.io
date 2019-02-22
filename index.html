@@ -27,8 +27,11 @@
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="250" height="60">
 							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Temperature</p></center>
 							</foreignObject>
-							<foreignObject id = "temp" alignment-baseline="hanging" class="trimmed-label" x="0" y="100" width="250" height="60">
+							<foreignObject id = "temp" alignment-baseline="hanging" class="trimmed-label" x="0" y="80" width="250" height="60">
 							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Unknown</p></center>
+							</foreignObject>
+							<foreignObject id = "tempRF" alignment-baseline="hanging" class="trimmed-label" x="0" y="120" width="250" height="60">
+							<center><p style="color: rgb(255, 255, 255); font-size: 15px; line-height: 15px;">Unknown</p></center>
 							</foreignObject>
 						</g>
 					</g>
@@ -70,9 +73,11 @@ var data=xhr.responseText;
 var jsonResponse = JSON.parse(data);
 
 var string = jsonResponse[0].Temperature.Metric.Value + " °C";
+var realF  = "RealFeel " + jsonResponse[0].RealFeelTemperature.Metric.Value + " °C ";
 
-document.getElementById("temp").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>";
-	
+document.getElementById("temp").innerHTML   = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>";
+document.getElementById("tempRF").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 15px; line-height: 15px;'>" + realF + "</p></center>";
+		
 GetTime()
 	
 }
