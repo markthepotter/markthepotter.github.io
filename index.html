@@ -32,7 +32,7 @@
 					</g>
 					<g ngx-charts-card="" ng-reflect-color="#C7B42C" ng-reflect-band-color="#C7B42C" ng-reflect-text-color="rgb(255, 77, 77)" ng-reflect-x="453" ng-reflect-y="0" ng-reflect-width="211" ng-reflect-height="365" ng-reflect-data="[object Object]" ng-reflect-median-size="9" ng-reflect-animations="true">
 						<g class="cell" transform="translate(453 , 0)">
-							<rect class="card" rx="3" ry="3" width="211" height="365" style="fill: rgb(255, 77, 77);"></rect>
+							<rect id = "binsBlock" class="card" rx="3" ry="3" width="211" height="365" style="fill: rgb(255, 77, 77);"></rect>
 							<title>Bin Collection</title>
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="211" height="60">
 							<center><p style="color: rgb(40, 36, 9); font-size: 15px; line-height: 15px;">Bin Collection</p></center>
@@ -51,6 +51,7 @@
   
 <button onclick="GetWeather()">Update Weather</button>
 <button onclick="GetBins()">Update Bins</button>
+<button onclick="GetTime()">Update Time</button>
 
 <script>
 
@@ -58,7 +59,6 @@ function GetWeather() {
 
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "https://dataservice.accuweather.com/currentconditions/v1/331001?apikey=EOohJt6RCWbUO9hGgyIvRbxVIdKe3ZOS&details=true", false);
-//xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(null);
 
 var data=xhr.responseText;
@@ -66,12 +66,48 @@ var jsonResponse = JSON.parse(data);
 
 document.getElementById("temp").innerHTML = jsonResponse[0].Temperature.Metric.Value + " °C";
 	
+GetTime()
+	
 }
 
 function GetBins() {
 
+GetTime()
+
+var n = GetWeek();
+
+document.getElementById("bins").innerHTML = n;
+
+if (n % 2) {
+	document.getElementById("binsBlock").style.fill = "black";
+}else {
+	document.getElementById("binsBlock").style.fill = "blue";
+}
+	
+}
+
+function GetTime() {
+
+var d = new Date();
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+document.getElementById("date").innerHTML = months[d.getMonth()] + " " + d.getDate() + "		" + d.getHours() + ":" + d.getMinutes();
+
 
 }
+
+// Returns the ISO week of the date.
+function GetWeek() {
+
+  var d = new Date();
+  d.setHours(0, 0, 0, 0);
+  var day0 = 3;
+  d.setDate(d.getDate() + day0 - (d.getDay() + 6) % 7);
+  // January 4 is always in week 1.
+  var week1 = new Date(d.getFullYear(), 0, 4);
+  // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+  return 1 + Math.round(((d.getTime() - week1.getTime()) / 86400000 - day0 + (week1.getDay() + 6) % 7) / 7);
+}
+
 
 </script>	
 
