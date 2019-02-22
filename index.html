@@ -10,7 +10,7 @@
 				<g ngx-charts-card-series="" ng-reflect-data="[object Object],[object Object" ng-reflect-dims="[object Object]" ng-reflect-colors="[object Object]" ng-reflect-inner-padding="15" ng-reflect-empty-color="rgba(0, 0, 0, 0)" ng-reflect-animations="true">
 					<g ngx-charts-card="" ng-reflect-color="#5AA454" ng-reflect-band-color="#5AA454" ng-reflect-text-color="rgb(0, 102, 255)" ng-reflect-x="1" ng-reflect-y="0" ng-reflect-width="211" ng-reflect-height="365" ng-reflect-data="[object Object]" ng-reflect-median-size="9" ng-reflect-animations="true">
 						<g class="cell" transform="translate(0 , 1)">
-							<rect class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(154,194,244);"></rect>
+							<rect class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(102, 240, 169);"></rect>
 							<title>Date</title>
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="211" height="60">
 							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Date</p></center>
@@ -21,7 +21,7 @@
 					</g>
 					<g ngx-charts-card="" ng-reflect-color="#A10A28" ng-reflect-band-color="#A10A28" ng-reflect-text-color="rgb(0, 204, 102)" ng-reflect-x="227" ng-reflect-y="0" ng-reflect-width="211" ng-reflect-height="365" ng-reflect-data="[object Object]" ng-reflect-median-size="9" ng-reflect-animations="true">
 						<g class="cell" transform="translate(0 , 170)">
-							<rect class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(112,128,144);"></rect>
+							<rect id = "tempS" class="card" rx="3" ry="3" width="211" height="160" style="fill: rgb(112,128,144);"></rect>
 							<title>Temperature</title>
 							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="211" height="60">
 							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Temperature</p></center>
@@ -49,9 +49,14 @@
 </ngx-charts-chart>
 </ngx-charts-number-card>
   
-<button onclick="GetWeather()">Update Weather</button>
-
 <script>
+
+holder = document.getElementById("tempS");
+
+holder.onclick = function(){
+   GetWeather();
+};
+
 
 function GetWeather() {
 
