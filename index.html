@@ -24,7 +24,7 @@
 						<g class="cell" transform="translate(0 , 170)">
 							<rect id = "tempS" class="card" rx="3" ry="3" width="250" height="160" style="fill: rgb(112,128,144);"></rect>
 							<title>Temperature</title>
-							<foreignObject alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="250" height="60">
+							<foreignObject id = "tempT" alignment-baseline="hanging" class="trimmed-label" x="0" y="0" width="250" height="60">
 							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;">Temperature</p></center>
 							</foreignObject>
 							<foreignObject id = "temp" alignment-baseline="hanging" class="trimmed-label" x="0" y="80" width="250" height="60">
@@ -56,11 +56,12 @@
   
 <script>
 
-holder = document.getElementById("tempS");
+var array1 = ['temp','tempS','tempT','tempRF'];
 
-holder.onclick = function(){
-   GetWeather();
-};
+array1.forEach(function(element) {
+	holder         = document.getElementById(element);
+	holder.onclick = function(){ GetWeather();};
+});
 
 
 function GetWeather() {
