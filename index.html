@@ -101,10 +101,6 @@ if (n % 2) {
 
 document.getElementById("bins").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>"			
 
-var data = JSON.stringify({
-"Type": "Recycling",
-});
-
 var xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 
@@ -114,14 +110,14 @@ if (this.readyState === 4) {
 }
 });
 
-xhr.open("POST", "https://bincollection-b495.restdb.io/rest/collectiontype");
+xhr.open("GET", "https://bincollection-b495.restdb.io/rest/collectiontype");
 xhr.setRequestHeader("content-type", "application/json");
 xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
 xhr.setRequestHeader("cache-control", "no-cache");
 
-xhr.send(data);
+xhr.send();
 
-var resp = JSON.parse(xhr.response);
+var resp = xhr.response;
 		
 	
 }
