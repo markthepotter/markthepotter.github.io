@@ -108,6 +108,8 @@ xhr.withCredentials = false;
 xhr.addEventListener("readystatechange", function () {
 	if (this.readyState === 4) {
 		console.log(this.responseText);
+		var resp = JSON.parse(xhr.responseText);
+		var next = 1;
 	}
 });
 xhr.open("GET", "https://bincollection-b495.restdb.io/rest/collectiontype?q=%7B%22Type%22%3A%22Recycling%22%7D");
@@ -115,9 +117,6 @@ xhr.setRequestHeader("content-type", "application/json");
 xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.send(data);
-
-var resp = JSON.parse(xhr.responseText);
-		
 	
 }
 
