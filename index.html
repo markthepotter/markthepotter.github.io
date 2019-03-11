@@ -114,9 +114,8 @@ if (this.readyState === 4) {
 }
 });
 
-xhr.open("GET", "https://bincollection-b495.restdb.io/rest/collectiontype");
+xhr.open("POST", "https://bincollection-b495.restdb.io/rest/collectiontype");
 xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("Access-Control-Allow-Origin","*")
 xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
 xhr.setRequestHeader("cache-control", "no-cache");
 
