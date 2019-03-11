@@ -101,6 +101,28 @@ if (n % 2) {
 
 document.getElementById("bins").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>"			
 
+var data = JSON.stringify({
+"Type": "Recycling",
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+if (this.readyState === 4) {
+	console.log(this.responseText);
+}
+});
+
+xhr.open("POST", "https://bincollection-b495.restdb.io/rest/collection-type");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
+xhr.setRequestHeader("cache-control", "no-cache");
+
+xhr.send(data);
+
+var resp = JSON.parse(xhr.response);
+		
 	
 }
 
@@ -126,7 +148,7 @@ function GetWeek() {
   return 1 + Math.round(((d.getTime() - week1.getTime()) / 86400000 - day0 + (week1.getDay() + 6) % 7) / 7);
 }
 
-setInterval(function() { GetBins();} , 2000 );
+setInterval(function() { GetBins();} , 10000 );
 
 </script>	
 
