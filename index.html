@@ -101,9 +101,7 @@ if (n % 2) {
 
 document.getElementById("bins").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>"			
 
-var data = JSON.stringify({
-	"Type": "Recycling",
-});
+var data = null;
 
 var xhr = new XMLHttpRequest();
 xhr.withCredentials = false;
@@ -112,7 +110,7 @@ xhr.addEventListener("readystatechange", function () {
 		console.log(this.responseText);
 	}
 });
-xhr.open("GET", "https://bincollection-b495.restdb.io/rest/collectiontype");
+xhr.open("GET", "https://bincollection-b495.restdb.io/rest/collectiontype?q=%7B%22Type%22%3A%22Recycling%22%7D");
 xhr.setRequestHeader("content-type", "application/json");
 xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
 xhr.setRequestHeader("cache-control", "no-cache");
