@@ -45,6 +45,9 @@
 							<foreignObject id = "bins" alignment-baseline="hanging" class="trimmed-label" x="0" y="100" width="250" height="60">
 							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;"></p></center>
 							</foreignObject>
+							<foreignObject id = "binday" alignment-baseline="hanging" class="trimmed-label" x="0" y="70" width="250" height="60">
+							<center><p style="color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;"></p></center>
+							</foreignObject>
 						</g>
 					</g>
 				</g>
@@ -85,22 +88,6 @@ GetTime()
 
 function GetBins() {
 
-GetTime()
-
-var n = GetWeek();
-
-document.getElementById("bins").innerHTML = n;
-
-if (n % 2) {
-	document.getElementById("binsBlock").style.fill = "black";
-	var string = "Black Bin";
-}else {
-	document.getElementById("binsBlock").style.fill = "blue";
-	var string = "Recycling";
-}
-
-document.getElementById("bins").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>"			
-
 var data = null;
 
 var xhr = new XMLHttpRequest();
@@ -109,10 +96,23 @@ xhr.addEventListener("readystatechange", function () {
 	if (this.readyState === 4) {
 		console.log(this.responseText);
 		var resp = JSON.parse(xhr.responseText);
-		var next = 1;
+		var d = new Date(resp[0].date);
+		var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+		var day  = days[d.getDay()-1];
+		if (resp[0].Type == "Rubbish") {
+			document.getElementById("binsBlock").style.fill = "black";
+			var string = "Black Bin";
+		}else {
+			document.getElementById("binsBlock").style.fill = "blue";
+			var string = "Recycling";
+		}
+		document.getElementById("binday").innerHTML = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + day + "</p></center>"			
+		document.getElementById("bins").innerHTML   = "<center><p style='color: rgb(255, 255, 255); font-size: 25px; line-height: 15px;'>" + string + "</p></center>"			
 	}
 });
-xhr.open("GET", "https://bincollection-b495.restdb.io/rest/collectiontype?q=%7B%22Type%22%3A%22Recycling%22%7D");
+
+var path = "https://bincollection-b495.restdb.io/rest/collectiontype?" + "q={%22date%22:{%22$gt%22:" + Date.now() + "}}";
+xhr.open("GET",path);
 xhr.setRequestHeader("content-type", "application/json");
 xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
 xhr.setRequestHeader("cache-control", "no-cache");
