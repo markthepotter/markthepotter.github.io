@@ -142,6 +142,7 @@ function GetWeek() {
   return 1 + Math.round(((d.getTime() - week1.getTime()) / 86400000 - day0 + (week1.getDay() + 6) % 7) / 7);
 }
 
+GetBins();
 setInterval(function() { GetBins();} , 10000 );
 
 </script>	
