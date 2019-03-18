@@ -111,7 +111,10 @@ xhr.addEventListener("readystatechange", function () {
 	}
 });
 
-var path = "https://bincollection-b495.restdb.io/rest/collectiontype?" + "q={%22date%22:{%22$gt%22:" + Date.now() + "}}";
+var date = new Date();
+date.setHours(0, 0, 0, 0);
+  
+var path = "https://bincollection-b495.restdb.io/rest/collectiontype?" + "q={%22date%22:{%22$gte%22:" + date.getTime() + "}}";
 xhr.open("GET",path);
 xhr.setRequestHeader("content-type", "application/json");
 xhr.setRequestHeader("x-apikey", "5c858520cac6621685acbd8b");
@@ -143,6 +146,7 @@ function GetWeek() {
 }
 
 GetBins();
+
 setInterval(function() { GetBins();} , 10000 );
 
 </script>	
